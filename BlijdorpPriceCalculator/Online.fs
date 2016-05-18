@@ -9,8 +9,9 @@ type NoteInput =
     }
 
 let collectInput () =
-    let rec aInput () = GetMinInt "how much addults? (from age of 13)" aInput (fun n -> n) 1
-    let rec cInput () = GetMinInt "how much children?" cInput (fun n -> n) 0
+    let tryAgain () = printfn "the input is wrong! Please try again"
+    let rec aInput () = GetMinInt "how much addults? (from age of 13)" (tryAgain >> aInput) (fun n -> n) 1
+    let rec cInput () = GetMinInt "how much children?" (tryAgain >> cInput) (fun n -> n) 0
     {
         Addults = aInput ()
         Childs = cInput ()

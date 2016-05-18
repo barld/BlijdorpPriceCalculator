@@ -1,7 +1,11 @@
-﻿// Learn more about F# at http://fsharp.org
-// See the 'F# Tutorial' project for more help.
+﻿type PayChoise =
+    | Online
 
 [<EntryPoint>]
 let main argv = 
-    printfn "%A" argv
-    0 // return an integer exit code
+    match PayChoise.Online with
+    | Online ->
+        let PayInfo = Online.collectInput ()
+        printfn "the price = %f" (Online.calculateNote PayInfo)
+    
+    System.Console.Read()
