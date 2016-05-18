@@ -50,6 +50,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="ConsoleInput.fs" />
     <Compile Include="Online.fs" />
+    <Compile Include="Ofline.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
   </ItemGroup>
