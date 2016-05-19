@@ -15,7 +15,7 @@ type Account =
     }
 
 type ATMAction =
-    | Take of amount: float32
+    | Take of float32
 
 type ATMResult =
     | Message of string
@@ -57,10 +57,12 @@ let CreatAccountOnConsole () =
 let rec getInt () = ConsoleInput.GetMinInt "how much money do you want?" (tryAgain >> getInt) (fun i -> i) 0
 
 [<EntryPoint>]
-let main argv = 
+let rec main argv = 
     let atm = CreateATMOnConsole ()
     let account = CreatAccountOnConsole ()
-    let m = getInt ()
-    printfn "result = %A" (executeAction )
+    let m = getInt () |> float32
+    printfn "result = %A" (executeAction atm account (Take(m)))
+
+    do main argv |> ignore
 
     System.Console.Read()
