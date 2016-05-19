@@ -38,9 +38,11 @@ let calculateNote (ni:NoteInput) =
     match ni.Addults+ni.Childs+ni.Supervisors+ni.Subscribers with    
     | n when n < 20 ->
         float32 ni.Addults * 22.f + 
-        float32 ni.Childs * 17.5f
+        float32 ni.Childs * 17.5f -
+        calculateDisCount ni
     | n ->
         float32 ni.Addults * 20.f + 
-        float32 ni.Childs * 15.5f
+        float32 ni.Childs * 15.5f -
+        calculateDisCount ni
 
     + float32 ni.Supervisors * 12.f

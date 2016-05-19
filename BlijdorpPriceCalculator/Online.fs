@@ -33,4 +33,5 @@ let calculateNote (ni:NoteInput) =
         loop ni (ni.Subscribers*4)
         
     float32 ni.Addults * 20.f + 
-    float32 ni.Childs * 15.5f
+    float32 ni.Childs * 15.5f -
+    calculateDisCount ni
