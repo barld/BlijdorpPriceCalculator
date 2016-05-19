@@ -37,7 +37,30 @@ let executeAction (atm:ATM) (account:Account) (action:ATMAction) : ATMResult =
             else
                 Message("not enough money and creditlimit")
 
+let tryAgain () = printfn "please try again" 
+let rec getActive () = ConsoleInput.getBool "is the machine Active?" (tryAgain >> getActive) (fun b -> b)
+let rec getFloat message () = ConsoleInput.getFloat32 message (tryAgain >> (getFloat message)) (fun f -> f)
+
+let CreateATMOnConsole () =    
+    {
+        Active = getActive()
+        DayLimit = getFloat "What is the DayLimit" ()
+        CurrentAmount = getFloat "what is the amount of monney in the ATM" ()
+    }
+
+let CreatAccountOnConsole () =
+    {
+        Saldo = getFloat "what is the saldo" ()
+        CreditLimit = getFloat "what is the credit limit" ()
+    }
+
+let rec getInt () = ConsoleInput.GetMinInt "how much money do you want?" (tryAgain >> getInt) (fun i -> i) 0
+
 [<EntryPoint>]
 let main argv = 
-    printfn "%A" argv
-    0 // return an integer exit code
+    let atm = CreateATMOnConsole ()
+    let account = CreatAccountOnConsole ()
+    let m = getInt ()
+    printfn "result = %A" (executeAction )
+
+    System.Console.Read()
