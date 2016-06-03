@@ -45,7 +45,7 @@ let CreateATMOnConsole () =
     {
         Active = getActive()
         DayLimit = getFloat "What is the DayLimit" ()
-        CurrentAmount = getFloat "what is the amount of monney in the ATM" ()
+        CurrentAmount = getFloat "what is the amount of money in the ATM" ()
     }
 
 let CreatAccountOnConsole () =
